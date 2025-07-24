@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import Modal from "./Modal";
+import PublicationsModal from "./PublicationsModal";
 import "./styles.css";
 
 function App() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isResumeOpen, setIsResumeOpen] = useState(false);
+  const [isPublicationsOpen, setIsPublicationsOpen] = useState(false);
 
   return (
     <div className="main-menu">
@@ -22,11 +24,15 @@ function App() {
       <div className="intro">
         <h1>Kevin Lim</h1>
         <p>I'm a data science student passionate about machine learning and software development.</p>
-        <button onClick={() => setIsOpen(true)} className="resume-btn">View Resume</button>
+        <div className="button-group">
+          <button onClick={() => setIsResumeOpen(true)} className="resume-btn">View Resume</button>
+          <button onClick={() => setIsPublicationsOpen(true)} className="publications-btn">Publications</button>
+        </div>
       </div>
 
-      {/* Modal for Resume */}
-      {isOpen && <Modal closeModal={() => setIsOpen(false)} />}
+      {/* Modals */}
+      {isResumeOpen && <Modal closeModal={() => setIsResumeOpen(false)} />}
+      {isPublicationsOpen && <PublicationsModal closeModal={() => setIsPublicationsOpen(false)} />}
     </div>
   );
 }
